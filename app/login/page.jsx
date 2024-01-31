@@ -29,7 +29,7 @@ const Login = () => {
 
   return (
     <div className='bg-layoutColor flex items-center justify-center h-screen w-full'>
-      <div className='shadow-lg w-[70%] bg-white rounded-md md:w-[30%] h-fit flex flex-col items-center md:p-12 p-[20px]'>
+      <div className='shadow-lg w-[70%] bg-white rounded-md lg:w-[25%] h-fit flex flex-col items-center md:p-12 p-[20px]'>
         <div className='flex justify-center mt-5' ><img src={Logo.src} alt="logo_image"></img></div>
         <div className=' mx-6 mt-10 mb-5 w-full'>
           <h1 className='font-bold text-2xl  text-[#5B6C7C] '>Hoşgeldin!</h1>

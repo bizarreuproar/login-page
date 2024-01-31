@@ -46,7 +46,7 @@ const Login = () => {
           <Form className='flex flex-col gap-4 w-full'>
             <div className='relative group'>
                 <label htmlFor="name" className={`absolute left-4 top-3 select-none text-lightGray group-focus-within:top-[-6px] group-focus-within:px-1 group-focus-within:left-[13px] group-focus-within:text-xs group-focus-within:text-primary group-focus-within:bg-white transition-all duration-200 ${props.values.name.length >= 1 ? 'top-[-6px] text-xs px-1 left-[13px]  bg-white' : 'text-base'}`} >Kullanıcı Adı</label>
-                <Field className='w-full text-darkGray border rounded-md h-[50px] px-4 border-darkGray focus:outline-primary' type="text" id="name" name="name" />
+                <Field className='w-full text-darkGray border rounded-md h-[50px] px-4 border-darkGray focus:outline-none focus:border-primary' type="text" id="name" name="name" />
                 <ErrorMessage name="name" component="div" />
             </div>
             <div>

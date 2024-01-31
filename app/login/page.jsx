@@ -8,7 +8,8 @@ import Logo from '../logo.svg';
 import Link from 'next/link';
 
 const validationSchema = Yup.object({
-  //password: Yup.string().required('Şifre girmelisiniz!'),
+  //name: Yup.string().required('Bu alan zorunludur'),
+  //password: Yup.string().required('Bu alan zorunludur'),
 });
 
 const initialValues = {
@@ -47,7 +48,7 @@ const Login = () => {
             <div className='relative group'>
                 <label htmlFor="name" className={`absolute left-4 top-3 select-none text-lightGray group-focus-within:top-[-6px] group-focus-within:px-1 group-focus-within:left-[13px] group-focus-within:text-xs group-focus-within:text-primary group-focus-within:bg-white transition-all duration-200 ${props.values.name.length >= 1 ? 'top-[-6px] text-xs px-1 left-[13px]  bg-white' : 'text-base'}`} >Kullanıcı Adı</label>
                 <Field className='w-full text-darkGray border rounded-md h-[50px] px-4 border-darkGray focus:border-[2px] focus:outline-none focus:ring-0 focus:border-primary' type="text" id="name" name="name" />
-                <ErrorMessage name="name" component="div" />
+                <ErrorMessage name="name" component="div"/>
             </div>
             <div>
 
@@ -69,7 +70,7 @@ const Login = () => {
               </div>
             </div>
 
-            <button className=' w-full rounded-md h-[40px]  bg-primary text-white px-4 hover:bg-primary/95 transition duration-150' type="submit">Giriş Yap</button>
+            <button className='w-full rounded-md h-[40px]  bg-primary text-white px-4 hover:bg-primary/95 transition duration-150' type="submit">Giriş Yap</button>
           </Form>
           )}
         </Formik>

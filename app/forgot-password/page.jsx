@@ -42,7 +42,7 @@ const ForgotPassword = () => {
             {props => (
             <Form className='flex flex-col gap-4 w-full'>
                 <div className='relative group'>
-                    <label htmlFor="mail" className={`absolute top-[23px] text-[20px] select-none left-4 text-lightGray group-focus-within:top-[-6px] group-focus-within:text-xs group-focus-within:left-[13px] group-focus-within:px-1 group-focus-within:text-primary group-focus-within:bg-white transition-all duration-200 ${props.values.mail.length >= 1 ? 'top-[-6px] left-[13px] text-xs px-1 bg-white' : 'text-base'}`}>Email</label>
+                    <label htmlFor="mail" className={`absolute top-[23px] text-[20px] select-none left-4 text-lightGray group-focus-within:top-[-7px] group-focus-within:text-xs group-focus-within:left-[13px] group-focus-within:px-1 group-focus-within:text-primary group-focus-within:bg-white transition-all duration-200 ${props.values.mail.length >= 1 ? 'top-[-7px] left-[13px] text-xs px-1 bg-white' : 'text-base'}`}>Email</label>
                     <Field className='w-full mb-3 border rounded-md h-[70px] text-darkGray border-[#DADEE1] px-4 focus:border-[2px] focus:border-primary focus:ring-0 focus:outline-none' type="mail" id="mail" name="mail" />
                     <ErrorMessage name="mail" component="div"/>
                 </div>

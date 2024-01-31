@@ -32,7 +32,7 @@ const Login = () => {
 
   return (
     <div className='bg-layoutColor flex items-center justify-center h-screen w-full'>
-      <div className='shadow-lg w-[90%] bg-white rounded-md md:w-[60%] lg:w-[25%] flex flex-col items-center lg:p-8 px-[20px] py-10'>
+      <div className='shadow-lg w-[95%] bg-white rounded-md md:w-[60%] lg:w-[40%] flex flex-col items-center lg:p-8 px-[20px]'>
         <div className='flex justify-center mt-5 items-center gap-2' ><img src={Logo.src} alt="logo_image"></img><span className='font-bold text-brand text-xl'>Brand</span></div>
         <div className=' mx-6 mt-10 mb-5 w-full'>
           <h1 className='font-bold text-2xl  text-[#4D5F71] '>Hoşgeldin!</h1>

@@ -9,8 +9,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const Timer = ({time}) => {
-
-
     const minutes = Math.floor(time / 60);
     const seconds = time - minutes * 60;
     const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
@@ -22,7 +20,6 @@ const Timer = ({time}) => {
     );
 };
 
-
 const validationSchema = Yup.object({
     mail: Yup.string().required('Bu alan zorunludur'),
 });
@@ -31,20 +28,18 @@ const initialValues = {
     mail: '',
 };
 
-
 const ForgotPassword = () => {
-
     const [submitted, setSubmitted] = useState(false);
     const [time, setTime] = useState(120);
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            if (time > 0) {
+            if (time > 0 && submitted) {
                 setTime(time - 1);
             }
         }, 1000);
         return () => clearTimeout(timer);
-    }, [time]);
+    }, [time, submitted]);
 
     const onSubmit = (values, { setSubmitting }) => {
         console.log('Form submitted with values:', values);

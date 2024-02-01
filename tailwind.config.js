@@ -19,9 +19,6 @@ module.exports = {
         layoutColorDark: "#232333",
         ComponentColorDark: "#2B2C3E"
       },
-      fontFamily: {
-        sans: ['Public Sans', 'sans-serif']
-      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

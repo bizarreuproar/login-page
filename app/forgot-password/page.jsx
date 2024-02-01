@@ -8,17 +8,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import Link from 'next/link';
 import Image from 'next/image';
 
-const Timer = () => {
-    const [time, setTime] = useState(120);
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            if (time > 0) {
-                setTime(time - 1);
-            }
-        }, 1000);
-        return () => clearTimeout(timer);
-    }, [time]);
+const Timer = ({time}) => {
 
 
     const minutes = Math.floor(time / 60);
@@ -26,17 +16,8 @@ const Timer = () => {
     const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 
     return (
-        <div className='flex text-xl mt-3 justify-center '>
+        <div className='flex text-xl mt-3 justify-center'>
             {formattedTime}
-            {time === 0 && (
-                <div className='relative'>
-                    <button
-                        className='h-fit  absolute top-[120px] left-[-75px] rounded-md  bg-primary text-white  px-4 hover:bg-primary/95 transition duration-200'
-                    >
-                        Tekrar gönder
-                    </button>
-                </div>
-            )}
         </div>
     );
 };
@@ -54,6 +35,16 @@ const initialValues = {
 const ForgotPassword = () => {
 
     const [submitted, setSubmitted] = useState(false);
+    const [time, setTime] = useState(120);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if (time > 0) {
+                setTime(time - 1);
+            }
+        }, 1000);
+        return () => clearTimeout(timer);
+    }, [time]);
 
     const onSubmit = (values, { setSubmitting }) => {
         console.log('Form submitted with values:', values);
@@ -62,8 +53,8 @@ const ForgotPassword = () => {
 
     return (
         <div className='bg-layoutColor flex items-center justify-center h-screen w-full'>
-            <div className='shadow-lg w-[93%] bg-white rounded-md min-w-[300px] max-w-[50%] sm:w-[60%] 2xl:w-[20%] lg:w-[31%] flex flex-col items-center py-[90px]  md:px-[30px] px-[20px]'>
-                <div className='flex justify-center mt-5 items-center gap-2' >
+            <div className='shadow-lg w-[93%] bg-white rounded-md min-w-[300px] max-w-[50%] sm:w-[60%] 2xl:w-[20%] lg:w-[31%] flex flex-col items-center py-10  md:px-[30px] px-[20px]'>
+                <div className='flex justify-center mt-3 items-center gap-2' >
                     <Image src={Logo.src} alt="logo_image" width={25} height={25}></Image><span className='font-bold text-brand text-xl'>Brand</span>
                 </div>
                 {submitted ?
@@ -71,10 +62,10 @@ const ForgotPassword = () => {
                         <div className='relative gap-3 mt-5'>
                             <div className='flex flex-col justify-center'>
                                 <h2 className='text-2xl  font-medium text-[25px] text-[#5D6D7E]'>Hesabınızı doğrulayın</h2>
-                            <Timer /> 
+                            <Timer time={time}/> 
                             </div>
                         </div>
-                        <div className='flex mt-2 justify-center'>
+                        <div className='flex mt-3 justify-center'>
                             <p className='text-[#5D6D7E]'>Kodu girin</p>
                         </div>
                     </div>
@@ -94,13 +85,18 @@ const ForgotPassword = () => {
                         <Form className='flex flex-col gap-4 w-full'>
                             {submitted ? (
                                 <div className='relative mt-1 group'>
-                                    <div className='flex items-center justify-center gap-3 w-full'>
-                                        <Field className='border block w-[37px] text-center text-2xl rounded-md h-[35px]  text-darkGray border-[#DADEE1] disabled:opacity-50 focus:border-[2px] focus:border-primary focus:ring-0 focus:outline-none' type='text' maxLength='1' id='password1' name='password1' />
-                                        <Field className='border w-[37px] text-center text-2xl rounded-md h-[35px] text-darkGray border-[#DADEE1] focus:border-[2px] focus:border-primary focus:ring-0 focus:outline-none' type='text' maxLength='1' id='password2' name='password2' />
-                                        <Field className='border w-[37px] text-center text-2xl rounded-md h-[35px] text-darkGray border-[#DADEE1] focus:border-[2px] focus:border-primary focus:ring-0 focus:outline-none' type='text' maxLength='1' id='password3' name='password3' />
-                                        <Field className='border w-[37px] text-center text-2xl rounded-md h-[35px] text-darkGray border-[#DADEE1] focus:border-[2px] focus:border-primary focus:ring-0 focus:outline-none' type='text' maxLength='1' id='password4' name='password4' />
-                                        <Field className='border w-[37px] text-center text-2xl rounded-md h-[35px] text-darkGray border-[#DADEE1] focus:border-[2px] focus:border-primary focus:ring-0 focus:outline-none' type='text' maxLength='1' id='password5' name='password5' />
-                                        <Field className='border w-[37px] text-center text-2xl rounded-md h-[35px] text-darkGray border-[#DADEE1] focus:border-[2px] focus:border-primary focus:ring-0 focus:outline-none' type='text' maxLength='1' id='password6' name='password6' />
+                                    <div className='flex flex-col gap-5'>
+                                        <div className='flex items-center justify-center gap-3 w-full'>
+                                            <Field className='border block w-[37px] text-center text-2xl rounded-md h-[35px]  text-darkGray border-[#DADEE1] disabled:opacity-50 focus:border-[2px] focus:border-primary focus:ring-0 focus:outline-none' type='text' disabled={time == 0} maxLength='1' id='password1' name='password1' />
+                                            <Field className='border w-[37px] text-center text-2xl rounded-md h-[35px] text-darkGray border-[#DADEE1] focus:border-[2px] focus:border-primary focus:ring-0 focus:outline-none' type='text' maxLength='1' id='password2' name='password2' />
+                                            <Field className='border w-[37px] text-center text-2xl rounded-md h-[35px] text-darkGray border-[#DADEE1] focus:border-[2px] focus:border-primary focus:ring-0 focus:outline-none' type='text' maxLength='1' id='password3' name='password3' />
+                                            <Field className='border w-[37px] text-center text-2xl rounded-md h-[35px] text-darkGray border-[#DADEE1] focus:border-[2px] focus:border-primary focus:ring-0 focus:outline-none' type='text' maxLength='1' id='password4' name='password4' />
+                                            <Field className='border w-[37px] text-center text-2xl rounded-md h-[35px] text-darkGray border-[#DADEE1] focus:border-[2px] focus:border-primary focus:ring-0 focus:outline-none' type='text' maxLength='1' id='password5' name='password5' />
+                                            <Field className='border w-[37px] text-center text-2xl rounded-md h-[35px] text-darkGray border-[#DADEE1] focus:border-[2px] focus:border-primary focus:ring-0 focus:outline-none' type='text' maxLength='1' id='password6' name='password6' />
+                                        </div>
+                                        
+                                            <button className={`w-full ${time == 0 ? `hidden` : ''}hidden rounded-md h-[40px] bg-primary text-white px-4 hover:bg-primary/95 transition duration-150`} type='submit'>Tekrar Gönder</button>
+                                        
                                     </div>
                                 </div>) : (
                                 <>

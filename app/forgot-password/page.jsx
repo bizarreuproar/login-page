@@ -56,12 +56,12 @@ const ForgotPassword = () => {
                     <div>
                         <div className='relative gap-3 mt-5'>
                             <div className='flex flex-col justify-center'>
-                                <h2 className='text-2xl  font-medium text-[25px] text-[#5D6D7E]'>Hesabınızı doğrulayın</h2>
+                                <h2 className='text-2xl ml-2 font-medium text-[25px] text-[#5D6D7E]'>Hesabınızı doğrulayın</h2>
                             <Timer time={time}/> 
                             </div>
                         </div>
                         <div className='flex mt-3 justify-center'>
-                            <p className='text-[#5D6D7E]'>Kodu girin</p>
+                            <p className='text-darkGray'>Kodu girin</p>
                         </div>
                     </div>
                     : <div className=' mx-6 mt-10 relative mb-5 w-full'>
@@ -87,9 +87,10 @@ const ForgotPassword = () => {
                                             {[...Array(6)].map((_, index) => (
                                             <Field
                                                 key={index}
-                                                className="border block w-[37px] text-center text-2xl rounded-md h-[35px]  text-darkGray border-[#DADEE1] disabled:opacity-50 focus:border-[2px] focus:border-primary focus:ring-0 focus:outline-none"
+                                                className="border block w-[37px] text-center text-2xl rounded-md h-[35px]  text-darkGray border-lightGray disabled:opacity-50 focus:border-[2px] focus:border-primary focus:ring-0 focus:outline-none"
                                                 type="text"
                                                 maxLength="1"
+                                                autoComplete="off"
                                                 id={`password${index + 1}`}
                                                 name={`password${index + 1}`}
                                                 disabled={time === 0}
@@ -104,7 +105,7 @@ const ForgotPassword = () => {
                                 <>
                                     <div className='relative group'>
                                         <label htmlFor="mail" className={`absolute top-3 text-[20px] select-none left-4 text-lightGray group-focus-within:top-[-7px] group-focus-within:text-xs group-focus-within:left-[13px] group-focus-within:px-1 group-focus-within:text-primary group-focus-within:bg-white transition-all duration-200 ${props.values.mail.length >= 1 ? 'top-[-7px] left-[13px] text-xs px-1 bg-white' : 'text-base'}`}>Email</label>
-                                        <Field className='w-full mb-3 border rounded-md h-[50px] text-darkGray border-[#DADEE1] px-4 focus:border-[2px] focus:border-primary focus:ring-0 focus:outline-none' type="mail" id="mail" name="mail" />
+                                        <Field className='w-full mb-3 border rounded-md h-[50px] text-darkGray border-[#DADEE1] px-4 focus:border-[2px] focus:border-primary focus:ring-0 focus:outline-none' type="mail" autoComplete="off" id="mail" name="mail" />
                                         <ErrorMessage className='' name="mail" component="div" />
                                     </div>
                                     <button className='w-full rounded-md h-[40px] bg-primary text-white px-4 hover:bg-primary/95 transition duration-150' type='submit'>Kodu Gönder</button>

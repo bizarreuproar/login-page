@@ -6,6 +6,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Logo from '../logo.svg';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const validationSchema = Yup.object({
   //name: Yup.string().required('Bu alan zorunludur'),
@@ -33,7 +34,7 @@ const Login = () => {
   return (
     <div className='bg-layoutColor flex items-center justify-center h-screen w-full'>
       <div className='shadow-lg w-[93%] bg-white rounded-md min-w-[300px] max-w-[50%] sm:w-[60%] 2xl:w-[20%] lg:w-[31%] flex flex-col items-center py-10  md:px-[30px] px-[20px]'>
-        <div className='flex justify-center mt-5 items-center gap-2' ><img src={Logo.src} alt="logo_image"></img><span className='font-bold text-brand text-xl'>Brand</span></div>
+        <div className='flex justify-center mt-5 items-center gap-2' ><Image src={Logo.src} alt="logo_image" width={25} height={25}></Image><span className='font-bold text-brand text-xl'>Brand</span></div>
         <div className=' mx-6 mt-8 mb-5 w-full'>
           <h1 className='font-bold text-2xl  text-[#4D5F71] '>Hoşgeldin!</h1>
           <p className='text-darkGray'>Kullanıcı adını ve şifreni girerek devam edebilirsin</p>

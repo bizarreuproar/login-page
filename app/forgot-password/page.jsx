@@ -48,7 +48,7 @@ const ForgotPassword = () => {
 
     return (
         <div className='bg-layoutColor flex items-center justify-center h-screen w-full'>
-            <div className='shadow-lg w-[93%] bg-white rounded-md min-w-[300px] max-w-[50%] sm:w-[60%] 2xl:w-[20%] lg:w-[31%] flex flex-col items-center py-8  md:px-[30px] px-[20px]'>
+            <div className='shadow-lg w-[93%] bg-white rounded-md min-w-[300px] max-w-[50%] sm:w-[60%] 2xl:w-[21%] lg:w-[31%] flex flex-col items-center py-8  md:px-[30px] px-[20px]'>
                 <div className='flex justify-center mt-3 items-center gap-2' >
                     <Image src={Logo.src} alt="logo_image" width={25} height={25}></Image><span className='font-bold text-brand text-xl'>Brand</span>
                 </div>

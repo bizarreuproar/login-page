@@ -53,7 +53,7 @@ const ForgotPassword = () => {
 
     return (
         <div className='bg-layoutColor flex items-center justify-center h-screen w-full'>
-            <div className='shadow-lg w-[93%] bg-white rounded-md min-w-[300px] max-w-[50%] sm:w-[60%] 2xl:w-[20%] lg:w-[31%] flex flex-col items-center py-10  md:px-[30px] px-[20px]'>
+            <div className='shadow-lg w-[93%] bg-white rounded-md min-w-[300px] max-w-[50%] sm:w-[60%] 2xl:w-[20%] lg:w-[31%] flex flex-col items-center py-8  md:px-[30px] px-[20px]'>
                 <div className='flex justify-center mt-3 items-center gap-2' >
                     <Image src={Logo.src} alt="logo_image" width={25} height={25}></Image><span className='font-bold text-brand text-xl'>Brand</span>
                 </div>
@@ -86,17 +86,24 @@ const ForgotPassword = () => {
                             {submitted ? (
                                 <div className='relative mt-1 group'>
                                     <div className='flex flex-col gap-5'>
+                                        
                                         <div className='flex items-center justify-center gap-3 w-full'>
-                                            <Field className='border block w-[37px] text-center text-2xl rounded-md h-[35px]  text-darkGray border-[#DADEE1] disabled:opacity-50 focus:border-[2px] focus:border-primary focus:ring-0 focus:outline-none' type='text' disabled={time == 0} maxLength='1' id='password1' name='password1' />
-                                            <Field className='border w-[37px] text-center text-2xl rounded-md h-[35px] text-darkGray border-[#DADEE1] focus:border-[2px] focus:border-primary focus:ring-0 focus:outline-none' type='text' maxLength='1' id='password2' name='password2' />
-                                            <Field className='border w-[37px] text-center text-2xl rounded-md h-[35px] text-darkGray border-[#DADEE1] focus:border-[2px] focus:border-primary focus:ring-0 focus:outline-none' type='text' maxLength='1' id='password3' name='password3' />
-                                            <Field className='border w-[37px] text-center text-2xl rounded-md h-[35px] text-darkGray border-[#DADEE1] focus:border-[2px] focus:border-primary focus:ring-0 focus:outline-none' type='text' maxLength='1' id='password4' name='password4' />
-                                            <Field className='border w-[37px] text-center text-2xl rounded-md h-[35px] text-darkGray border-[#DADEE1] focus:border-[2px] focus:border-primary focus:ring-0 focus:outline-none' type='text' maxLength='1' id='password5' name='password5' />
-                                            <Field className='border w-[37px] text-center text-2xl rounded-md h-[35px] text-darkGray border-[#DADEE1] focus:border-[2px] focus:border-primary focus:ring-0 focus:outline-none' type='text' maxLength='1' id='password6' name='password6' />
+                                           
+                                            {[...Array(6)].map((_, index) => (
+                                            <Field
+                                                key={index}
+                                                className="border block w-[37px] text-center text-2xl rounded-md h-[35px]  text-darkGray border-[#DADEE1] disabled:opacity-50 focus:border-[2px] focus:border-primary focus:ring-0 focus:outline-none"
+                                                type="text"
+                                                maxLength="1"
+                                                id={`password${index + 1}`}
+                                                name={`password${index + 1}`}
+                                                disabled={time === 0}
+                                            />
+                                        ))}
                                         </div>
-                                        
-                                            <button className={`w-full ${time == 0 ? `hidden` : ''}hidden rounded-md h-[40px] bg-primary text-white px-4 hover:bg-primary/95 transition duration-150`} type='submit'>Tekrar Gönder</button>
-                                        
+                                        <div className='flex items-center justify-center w-full'>
+                                            <button className={`${time === 0 ? '' : 'hidden'} rounded-md h-[40px] bg-primary text-white px-4 hover:bg-primary/90 transition duration-200`} onClick={() => setTime(120)} type='submit'>Tekrar Gönder</button>    
+                                        </div>
                                     </div>
                                 </div>) : (
                                 <>

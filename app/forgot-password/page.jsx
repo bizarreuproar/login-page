@@ -97,16 +97,14 @@ const ForgotPassword = () => {
                                                     disabled={time === 0}
                                                     onKeyDown={(e) => {
                                                         if (e.key === 'Backspace') {
-                                                            e.preventDefault(); // Prevents the browser back action
+                                                            e.preventDefault();
                                                             if (index > -1 && index < 6) {
                                                                 props.setFieldValue(`password${index + 1}`, '');
                                                                 document.getElementById(`password${index}`).focus();
                                                             }
                                                         } else if (/^\d$/.test(e.key)) {
-                                                            // If a numeric key is pressed, fill the current input
                                                             e.preventDefault();
                                                             props.setFieldValue(`password${index + 1}`, e.key);
-                                                            // If not the last input, focus on the next input
                                                             if (index < 5) {
                                                                 document.getElementById(`password${index + 2}`).focus();
                                                             }

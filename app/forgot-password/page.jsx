@@ -98,9 +98,12 @@ const ForgotPassword = () => {
                                                     onKeyDown={(e) => {
                                                         if (e.key === 'Backspace') {
                                                             e.preventDefault();
-                                                            if (index > -1 && index < 6) {
+                                                            if (index > 0 && index < 6) {
                                                                 props.setFieldValue(`password${index + 1}`, '');
                                                                 document.getElementById(`password${index}`).focus();
+                                                            }
+                                                            else if (index == 0) {
+                                                                props.setFieldValue(`password${index + 1}`, '');
                                                             }
                                                         } else if (/^\d$/.test(e.key)) {
                                                             e.preventDefault();

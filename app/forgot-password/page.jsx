@@ -1,12 +1,12 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { FcLock } from "react-icons/fc";
 import * as Yup from 'yup';
-import Logo from '../logo.svg';
-import { IoIosArrowBack } from "react-icons/io";
 import Link from 'next/link';
 import Image from 'next/image';
+import Logo from '../logo.svg';
+import { FcLock } from "react-icons/fc";
+import { IoIosArrowBack } from "react-icons/io";
 
 const Timer = ({ time }) => {
     const minutes = Math.floor(time / 60);
@@ -111,7 +111,14 @@ const ForgotPassword = () => {
                                                             if (index < 5) {
                                                                 document.getElementById(`password${index + 2}`).focus();
                                                             }
+                                                        } else if (e.key === 'ArrowLeft' && index > 0) {
+                                                            e.preventDefault();
+                                                            document.getElementById(`password${index}`).focus();
+                                                        } else if (e.key === 'ArrowRight' && index < 5) {
+                                                            e.preventDefault();
+                                                            document.getElementById(`password${index + 2}`).focus();
                                                         }
+                                                        
                                                     }}
                                                 />
                                             ))}

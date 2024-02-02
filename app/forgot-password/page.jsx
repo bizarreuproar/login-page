@@ -8,7 +8,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import Link from 'next/link';
 import Image from 'next/image';
 
-const Timer = ({time}) => {
+const Timer = ({ time }) => {
     const minutes = Math.floor(time / 60);
     const seconds = time - minutes * 60;
     const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
@@ -22,6 +22,7 @@ const Timer = ({time}) => {
 
 const validationSchema = Yup.object({
     mail: Yup.string().required('Bu alan zorunludur'),
+    
 });
 
 const initialValues = {
@@ -57,7 +58,7 @@ const ForgotPassword = () => {
                         <div className='relative gap-3 mt-5'>
                             <div className='flex flex-col justify-center'>
                                 <h2 className='text-2xl ml-2 font-medium text-[25px] text-[#5D6D7E]'>Hesabınızı doğrulayın</h2>
-                            <Timer time={time}/> 
+                                <Timer time={time} />
                             </div>
                         </div>
                         <div className='flex mt-3 justify-center'>
@@ -65,14 +66,14 @@ const ForgotPassword = () => {
                         </div>
                     </div>
                     : <div className=' mx-6 mt-10 relative mb-5 w-full'>
-                    <div className='flex items-center'>
-                        <h1 className='font-medium text-[25px] text-2xl mb-1 text-[#5D6D7E] '>Şifreni mi unuttun?</h1>
-                        <FcLock className='h-6 w-6 ml-2 mb-1 ' />
-                    </div>
-                    <p className='text-darkGray '>Email adresine gelen kodu girerek şifreni değiştirebilirsin</p>
-                </div>}
+                        <div className='flex items-center'>
+                            <h1 className='font-medium text-[25px] text-2xl mb-1 text-[#5D6D7E] '>Şifreni mi unuttun?</h1>
+                            <FcLock className='h-6 w-6 ml-2 mb-1 ' />
+                        </div>
+                        <p className='text-darkGray '>Email adresine gelen kodu girerek şifreni değiştirebilirsin</p>
+                    </div>}
                 <Formik
-                    initialValues={{ ...initialValues}}
+                    initialValues={{ ...initialValues }}
                     validationSchema={validationSchema}
                     onSubmit={onSubmit}
                 >
@@ -81,24 +82,41 @@ const ForgotPassword = () => {
                             {submitted ? (
                                 <div className='relative mt-1 group'>
                                     <div className='flex flex-col gap-5'>
-                                        
+
                                         <div className='flex items-center justify-center gap-3 w-full'>
-                                           
+
                                             {[...Array(6)].map((_, index) => (
-                                            <Field
-                                                key={index}
-                                                className="border block w-[37px] text-center text-2xl rounded-md h-[35px]  text-darkGray border-lightGray disabled:opacity-50 focus:border-[2px] focus:border-primary focus:ring-0 focus:outline-none"
-                                                type="text"
-                                                maxLength="1"
-                                                autoComplete="off"
-                                                id={`password${index + 1}`}
-                                                name={`password${index + 1}`}
-                                                disabled={time === 0}
-                                            />
-                                        ))}
+                                                <Field
+                                                    key={index}
+                                                    className="border block w-[37px] text-center text-2xl rounded-md h-[35px]  text-darkGray border-lightGray disabled:opacity-50 focus:border-[2px] focus:border-primary focus:ring-0 focus:outline-none"
+                                                    type="text"
+                                                    maxLength="1"
+                                                    autoComplete="off"
+                                                    id={`password${index + 1}`}
+                                                    name={`password${index + 1}`}
+                                                    disabled={time === 0}
+                                                    onKeyDown={(e) => {
+                                                        if (e.key === 'Backspace') {
+                                                            e.preventDefault(); // Prevents the browser back action
+                                                            if (index > -1 && index < 6) {
+                                                                props.setFieldValue(`password${index + 1}`, '');
+                                                                document.getElementById(`password${index}`).focus();
+                                                            }
+                                                        } else if (/^\d$/.test(e.key)) {
+                                                            // If a numeric key is pressed, fill the current input
+                                                            e.preventDefault();
+                                                            props.setFieldValue(`password${index + 1}`, e.key);
+                                                            // If not the last input, focus on the next input
+                                                            if (index < 5) {
+                                                                document.getElementById(`password${index + 2}`).focus();
+                                                            }
+                                                        }
+                                                    }}
+                                                />
+                                            ))}
                                         </div>
                                         <div className='flex items-center justify-center w-full'>
-                                            <button className={`${time === 0 ? '' : 'hidden'} rounded-md h-[40px] bg-primary text-white px-4 hover:bg-primary/90 transition duration-200`} onClick={() => setTime(120)} type='submit'>Tekrar Gönder</button>    
+                                            <button className={`${time === 0 ? '' : 'hidden'} rounded-md h-[40px] bg-primary text-white px-4 hover:bg-primary/90 transition duration-200`} onClick={() => {setTime(120); props.resetForm();}} type='submit'>Tekrar Gönder</button>
                                         </div>
                                     </div>
                                 </div>) : (
